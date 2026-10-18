@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 已登录：绿色完成态（不可点击，此时不提供换号） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="16dp" />
+    <solid android:color="@color/ok_bg" />
+    <stroke
+        android:width="1.5dp"
+        android:color="@color/ok" />
+</shape>

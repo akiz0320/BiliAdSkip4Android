@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 未登录：柔和的粉底 + 粉色描边，作为次级操作，不与「启用/暂停」主按钮抢视线 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#33FB7299">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="@color/accent_bg" />
+            <stroke
+                android:width="1.5dp"
+                android:color="@color/accent" />
+        </shape>
+    </item>
+</ripple>

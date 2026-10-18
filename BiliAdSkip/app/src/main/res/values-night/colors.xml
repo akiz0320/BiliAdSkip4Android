@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 深色（系统深色模式）：同名覆盖，框架按 night 限定符自动切换 -->
+<resources>
+    <color name="bg">#0E1013</color>
+    <color name="surface">#171A21</color>
+    <color name="surface2">#1E222B</color>
+    <color name="stroke">#262C38</color>
+    <color name="text">#EDEFF5</color>
+    <color name="text_dim">#98A1B2</color>
+    <color name="text_faint">#6B7383</color>
+    <color name="accent">#FB7299</color>
+    <color name="accent_soft">#FF9DB6</color>
+    <color name="ok">#3DDC97</color>
+    <color name="ok_bg">#13301F</color>
+    <color name="accent_bg">#2A1A22</color>
+    <color name="warn">#FFB020</color>
+    <color name="warn_bg">#33260F</color>
+    <color name="bad">#FF5C7A</color>
+    <color name="icon_bg">#FBF9F4</color>
+    <color name="cream">#FBF9F4</color>
+    <color name="log_bg">#14171D</color>
+    <color name="log_stroke">#20252F</color>
+    <color name="log_text">#A9B2C0</color>
+</resources>

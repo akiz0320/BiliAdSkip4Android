@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+# BiliAdSkip4Android / BADS —— 不应入库的东西
+# ---------------------------------------------------------------------------
+
+# Gradle 与 Android 构建产物
+.gradle/
+build/
+*.apk
+*.aab
+
+# 本机配置：内含 sdk.dir 绝对路径与签名口令，每台机器都不同
+local.properties
+
+# 签名密钥：只在本地保管，绝不入库（防伪就靠它）
+*.jks
+*.keystore
+*.p12
+signing/
+keystore/
+
+# IDE
+.idea/
+*.iml
+*.hprof
+capture/
+
+# 本地素材与探针工程：不进仓库（截图按需挑入 docs/）
+_shots/
+verify-p0p1/
+spike/node_modules/
+
+# 其他
+.DS_Store
+Thumbs.db
+output-metadata.json

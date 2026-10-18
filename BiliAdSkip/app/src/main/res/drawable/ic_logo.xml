@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 小电视线框 + 颜文字 =^_^= ：圆角机身 + 内嵌屏幕 + 底部双旋钮 + 两只脚 + V 形天线 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- V 形天线 -->
+    <path
+        android:pathData="M50,36 L43,25 M58,36 L65,25"
+        android:strokeColor="#FB7299"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round" />
+
+    <!-- 机身 -->
+    <path
+        android:pathData="M36,36 H72 A12,12 0 0 1 84,48 V68 A12,12 0 0 1 72,80 H36 A12,12 0 0 1 24,68 V48 A12,12 0 0 1 36,36 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#FB7299"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- 内嵌屏幕 -->
+    <path
+        android:pathData="M37,43 H71 A6,6 0 0 1 77,49 V63 A6,6 0 0 1 71,69 H37 A6,6 0 0 1 31,63 V49 A6,6 0 0 1 37,43 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#FB7299"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- 底部两个旋钮 -->
+    <path
+        android:pathData="M33.6,73 A3.4,3.4 0 1 0 40.4,73 A3.4,3.4 0 1 0 33.6,73 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#FB7299"
+        android:strokeWidth="2.6" />
+    <path
+        android:pathData="M67.6,73 A3.4,3.4 0 1 0 74.4,73 A3.4,3.4 0 1 0 67.6,73 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#FB7299"
+        android:strokeWidth="2.6" />
+
+    <!-- 两只脚 -->
+    <path
+        android:pathData="M31.5,80 H38 V84 H31.5 Z M70,80 H76.5 V84 H70 Z"
+        android:fillColor="#FB7299" />
+
+    <!-- 颜文字：左腮红 = 、左眼 ^ 、嘴 _ 、右眼 ^ 、右腮红 = （拉开腮红↔眼、嘴↔眼间距） -->
+    <path
+        android:pathData="M32,53 L38,53 M32,57 L38,57 M42,57 L46,49 L50,57 M52,62 L58,62 M58,57 L62,49 L66,57 M70,53 L76,53 M70,57 L76,57"
+        android:strokeColor="#FB7299"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+}
+
+// ---------------------------------------------------------------------------
+// Release 签名信息：从 local.properties（不入库）或环境变量读取，绝不写死在仓库里。
+//
+// local.properties 里加这四行（keystore 用正斜杠路径最稳，例如 D:/keys/bads-release.jks）：
+//   bads.storeFile=D:/keys/bads-release.jks
+//   bads.storePassword=你的keystore口令
+//   bads.keyAlias=bads
+//   bads.keyPassword=你的别名口令
+// 也可以改用环境变量：BADS_STORE_FILE / BADS_STORE_PASSWORD / BADS_KEY_ALIAS / BADS_KEY_PASSWORD
+//
+// 没配置时 release 依然能构建，但产出的是"未签名包"（装不上）——
+// 这是刻意的：宁可构建失败/无签名，也不让密钥进仓库。
+//
+// keystore 生成（一次性，自己保管好，丢了就没法给老用户升级）：
+//   keytool -genkeypair -v -keystore bads-release.jks -alias bads \
+//           -keyalg RSA -keysize 2048 -validity 36500
+// 看指纹（要填进 README 与应用内「关于」页比对）：
+//   keytool -list -v -keystore bads-release.jks -alias bads
+// ---------------------------------------------------------------------------
+def localProps = new Properties()
+def localPropsFile = rootProject.file('local.properties')
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { localProps.load(it) }
+}
+def signCfg = { String propKey, String envKey ->
+    def v = localProps.getProperty(propKey)
+    if (v == null || v.trim().isEmpty()) {
+        v = System.getenv(envKey)
+    }
+    return (v == null || v.trim().isEmpty()) ? null : v.trim()
+}
+// local.properties 是 java.util.Properties 格式，单个反斜杠会被当成转义符（\b 会变成退格符），
+// 所以这里统一把反斜杠替换成正斜杠：写 D:\keys\x.jks 还是 D:/keys/x.jks 都能认。
+def storePathRaw = signCfg('bads.storeFile', 'BADS_STORE_FILE')
+def storePath = storePathRaw == null ? null : storePathRaw.replace('\\', '/')
+def storeFileObj = storePath == null ? null : file(storePath)
+def hasReleaseSigning = storeFileObj != null && storeFileObj.exists()
+if (storePath != null && !hasReleaseSigning) {
+    logger.warn("[BADS] bads.storeFile 指向的文件不存在：${storePath}；release 将产出「未签名包」。"
+            + "路径建议用正斜杠，例如 D:/keys/bads-release.jks")
+}
+
+android {
+    namespace 'com.biliadskip.app'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+
+    defaultConfig {
+        applicationId "com.biliadskip.app"
+        minSdk 23
+        targetSdk 35
+        // 每发一次 Release 都要把 versionCode 加一，否则老用户覆盖安装不生效
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile storeFileObj
+                storePassword signCfg('bads.storePassword', 'BADS_STORE_PASSWORD')
+                keyAlias signCfg('bads.keyAlias', 'BADS_KEY_ALIAS')
+                keyPassword signCfg('bads.keyPassword', 'BADS_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildFeatures {
+        // 「关于」页要显示当前版本号，用 BuildConfig.VERSION_NAME 保证只有一处版本来源
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildTypes {
+        debug {
+        }
+        release {
+            minifyEnabled false
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
