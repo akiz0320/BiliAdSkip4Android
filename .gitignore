@@ -24,10 +24,10 @@ keystore/
 *.hprof
 capture/
 
-# 本地素材与探针工程：不进仓库（截图按需挑入 docs/）
+# 本地素材、探针工程与 JS 原型：不进仓库（截图按需挑入 docs/）
 _shots/
 verify-p0p1/
-spike/node_modules/
+spike/
 
 # 其他
 .DS_Store
